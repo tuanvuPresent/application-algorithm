@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include <limits.h> // for int,char macros
+#include <limits.h> 
 
 using namespace std;
 
