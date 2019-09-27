@@ -24,8 +24,7 @@ void input()
 {
     for (int i = 0; i < 10000; i++)
         arr[i] = i + 1;
-    cin >> n;
-    for(int i=0;i<n;i++) cin>>arr[i];
+    cin >> n >> k;
 }
  
 void show(int arr[], int n)
@@ -107,11 +106,17 @@ void permuteFast(int a[], int n, int k)
         cout << -1;
         return;
     }
+    
     // 3 1 2 4 		18 
     // 4 1 2 3		19
     // 4 1 3 2		20
     int count = 0;
-    for (int i = 0; i < n && k > 0; i++) {
+    for(int i = count;i<n-13;i++){
+    	a[i] = i + 1;
+    	choice[a[i]] = 1;
+    	count++;
+	}
+    for (int i = count; i < n && k > 0; i++) {
         int x = k / gt[n - i - 1];
         if (k % gt[n - i - 1] != 0){
             x++;
@@ -138,8 +143,7 @@ void permuteFast(int a[], int n, int k)
 int main()
 {
     input();
-//    permuteFast(arr, n, k);
-	permuteK(arr,n,1);
+    permuteFast(arr, n, k);
  
     return 0;
 }
