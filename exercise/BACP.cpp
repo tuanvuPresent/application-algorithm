@@ -31,13 +31,84 @@ output:
 12
 */
 
-
 #include <iostream>
-
 using namespace std;
+int soKy;
+int soMon;
+int tinChi[17]; // thoi gian cua mon
+int matrix[17][17]; //matrix[i][j] = 1  ,i  hoc truoc j
 
-int main(){
+int res = 1000000000;
+int load[6] = { 0 };
+int X[17] = { 0 };
 
-	return 0;
+int maxLoad()
+{
+    int max = load[1];
+    for (int i = 2; i <= soKy; i++) {
+        if (max < load[i]) {
+            max = load[i];
+        }
+    }
+    return max;
+}
+
+int check(int n, int v)
+{
+    for (int i = 1; i <= n - 1; i++) {
+        if (matrix[i][n]) {
+            if (X[i] >= v)
+                return 0;
+        }
+        else if (matrix[n][i]) {
+            if (X[i] <= v)
+                return 0;
+        }
+    }
+
+    return 1;
+}
+
+void backtrack(int n)
+{
+    if (n == soMon + 1) {
+        int temp = maxLoad();
+        res = min(res, temp);
+    }
+    else {
+        for (int v = 1; v <= soKy; v++) {
+            if (check(n, v)) {
+                X[n] = v;
+                load[v] += tinChi[n];
+                backtrack(n + 1);
+                load[v] -= tinChi[n];
+            }
+        }
+    }
+}
+
+int main()
+{
+    //input
+    cin >> soMon >> soKy;
+    for (int i = 1; i <= soMon; i++)
+        cin >> tinChi[i];
+
+    for (int i = 1; i <= soMon; i++) {
+        for (int j = 1; j <= soMon; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+    //handle
+    backtrack(1);
+    //show output
+    if (res == 1000000000) {
+        cout << "-1";
+    }
+    else {
+        cout << res;
+    }
+
+    return 0;
 }
 
