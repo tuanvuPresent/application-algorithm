@@ -19,38 +19,46 @@ int c[50] = {0};
 int res = 1000000000;
 int smin = 1000000000;
 
-void backtrack(int n, int sum){
-	if(n == nhiemVu + 1){
-		if(res > sum) res = sum;
+void backtrack(int n, int sum)
+{
+	if (n == nhiemVu + 1)
+	{
+		if (res > sum)
+			res = sum;
 		return;
 	}
-	for(int i = 1; i <= nhanVien; i++){
-		if(c[i] < k && sum + matrix[i][n] + smin * (nhiemVu - n)  < res){
+	for (int i = 1; i <= nhanVien; i++)
+	{
+		if (c[i] < k && sum + matrix[i][n] + smin * (nhiemVu - n) < res)
+		{
 			c[i]++;
-			backtrack(n+1, sum + matrix[i][n]);
+			backtrack(n + 1, sum + matrix[i][n]);
 			c[i]--;
 		}
 	}
 }
 
-int main(){
+int main()
+{
 	//input
-	freopen("input.txt.txt","r",stdin);
-	cin>>nhiemVu>>nhanVien>>k;
-	for(int i = 1; i<= nhanVien; i++){
-		for(int j = 1; j <= nhiemVu; j++){
-			cin>>matrix[i][j];
-			if(smin > matrix[i][j]){
+	freopen("input.txt.txt", "r", stdin);
+	cin >> nhiemVu >> nhanVien >> k;
+	for (int i = 1; i <= nhanVien; i++)
+	{
+		for (int j = 1; j <= nhiemVu; j++)
+		{
+			cin >> matrix[i][j];
+			if (smin > matrix[i][j])
+			{
 				smin = matrix[i][j];
 			}
 		}
 	}
-	
+
 	//handle
-	backtrack(1,0);
+	backtrack(1, 0);
 	//show output
-	cout<<res;
-	
+	cout << res;
+
 	return 0;
 }
-

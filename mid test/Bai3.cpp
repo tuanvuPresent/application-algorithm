@@ -13,13 +13,16 @@ output:
 using namespace std;
 int arr[100001];
 
-int solve(int n, int m){
-  	int res = 0;
+int solve(int n, int m)
+{
+    int res = 0;
     int pos = 0;
     int run = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         run -= (i > 0) ? arr[i - 1] : 0;
-        while (pos < n && run + arr[pos] <= m) {
+        while (pos < n && run + arr[pos] <= m)
+        {
             run += arr[pos];
             pos++;
             res++;
@@ -29,16 +32,18 @@ int solve(int n, int m){
     return res;
 }
 
-int main(){
-	//input
-	int n,m; cin>>n>>m;
-	for(int i=0; i<n; i++) cin>>arr[i];
-	
-	//handle
-	int res = solve(n,m);
-	//output
-	cout<<res;
-		
-	return 0;
-}
+int main()
+{
+    //input
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
 
+    //handle
+    int res = solve(n, m);
+    //output
+    cout << res;
+
+    return 0;
+}

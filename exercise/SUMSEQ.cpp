@@ -8,7 +8,8 @@ int main()
     cin >> n;
     int res = 0;
     int a;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         cin >> a;
         res = (res + a % N) % N;
     }

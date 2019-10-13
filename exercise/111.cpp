@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include <limits.h> 
+#include <limits.h>
 
 using namespace std;
 
@@ -29,8 +29,10 @@ void addQ(int tx, int ty)
 
 void showMatrix()
 {
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
             cout << matrix[i][j] << "  ";
         }
         cout << "\n";
@@ -43,23 +45,28 @@ void BFS(int n)
     memset(visit, 0, sizeof(visit));
     addQ(5, 5);
     z = 0;
-    while (fisrt != last && n > 0) {
+    while (fisrt != last && n > 0)
+    {
         n--;
         popQ();
         matrix[x][y] = z;
-        if (matrix[x + 1][y] == -1) {
+        if (matrix[x + 1][y] == -1)
+        {
             matrix[x + 1][y] = z + 1;
             addQ(x + 1, y);
         }
-        if (matrix[x - 1][y] == -1) {
+        if (matrix[x - 1][y] == -1)
+        {
             matrix[x - 1][y] = z + 1;
             addQ(x - 1, y);
         }
-        if (matrix[x][y - 1] == -1) {
+        if (matrix[x][y - 1] == -1)
+        {
             matrix[x][y - 1] = z + 1;
             addQ(x, y - 1);
         }
-        if (matrix[x][y + 1] == -1) {
+        if (matrix[x][y + 1] == -1)
+        {
             matrix[x][y + 1] = z + 1;
             addQ(x, y + 1);
         }
@@ -69,17 +76,20 @@ void BFS(int n)
 
 void toHop(int n, int open, int close)
 {
-    if (open == n && close == n) {
+    if (open == n && close == n)
+    {
         for (int i = 1; i <= n + n; i++)
             cout << output[i];
         cout << "\n";
         return;
     }
-    if (open < n && open + 1 >= close) {
+    if (open < n && open + 1 >= close)
+    {
         output[open + close] = '(';
         toHop(n, open + 1, close);
     }
-    if (close < n && open >= close) {
+    if (close < n && open >= close)
+    {
         output[open + close] = ')';
         toHop(n, open, close + 1);
     }
@@ -146,7 +156,8 @@ void readWriteFileBinary()
     //read
     ifstream in;
     in.open("hoclaptrinh.dat");
-    while (in.read(reinterpret_cast<char*>(&n), sizeof(int))) {
+    while (in.read(reinterpret_cast<char *>(&n), sizeof(int)))
+    {
         cout << n << "\n";
     }
     in.close();
@@ -154,11 +165,11 @@ void readWriteFileBinary()
     ofstream out;
     out.open("hoclaptrinh.dat", ios::app);
     cin >> n;
-    out.write(reinterpret_cast<char*>(&n), sizeof(int));
+    out.write(reinterpret_cast<char *>(&n), sizeof(int));
     out.close();
 }
 
-float arr[] = { 3, 5, 6, 10 ,20 };
+float arr[] = {3, 5, 6, 10, 20};
 //float arr[]={1,2,3,5,9,15};
 void myMerge(char nameFile[10], int n)
 {
@@ -166,29 +177,37 @@ void myMerge(char nameFile[10], int n)
     in.open(nameFile);
 
     float x = 0;
-    in.read(reinterpret_cast<char*>(&x), sizeof(float));
+    in.read(reinterpret_cast<char *>(&x), sizeof(float));
     int i = 0;
-    while (i < n) {
-        if (arr[i] < x) {
+    while (i < n)
+    {
+        if (arr[i] < x)
+        {
             printf("%.2f ", arr[i++]);
         }
-        else {
+        else
+        {
             printf("%.2f ", x);
-            if (!in.read(reinterpret_cast<char*>(&x), sizeof(float))) {
+            if (!in.read(reinterpret_cast<char *>(&x), sizeof(float)))
+            {
                 break;
             }
         }
     }
 
-    if (i < n) {
-        while (i < n) {
+    if (i < n)
+    {
+        while (i < n)
+        {
             printf("%.2f ", arr[i++]);
         }
     }
-    else {
-        do {
+    else
+    {
+        do
+        {
             printf("%.2f ", x);
-        } while (in.read(reinterpret_cast<char*>(&x), sizeof(float)));
+        } while (in.read(reinterpret_cast<char *>(&x), sizeof(float)));
     }
 
     in.close();
@@ -198,7 +217,7 @@ void writeArray(char nameFile[])
 {
     fstream out;
     out.open(nameFile);
-    out.write(reinterpret_cast<char*>(&arr), sizeof(arr));
+    out.write(reinterpret_cast<char *>(&arr), sizeof(arr));
     out.close();
 }
 
@@ -207,69 +226,84 @@ void writeArray(char nameFile[])
 #include <algorithm>
 using namespace std;
 
-struct point {
+struct point
+{
     double x, y;
 };
 
-bool cmp_x(const point &a, const point &b) {
+bool cmp_x(const point &a, const point &b)
+{
     return a.x < b.x;
 }
 
-bool cmp_y(const point &a, const point &b) {
+bool cmp_y(const point &a, const point &b)
+{
     return a.y < b.y;
 }
 
 #define MAXN 100000
 point a[MAXN];
-double mindist; // bi?n luu k?t qu? bài toán
+double mindist; // bi?n luu k?t qu? bï¿½i toï¿½n
 
-// tính kho?ng cách gi?a a và b r?i update k?t qu?
-void upd_ans(const point &a, const point &b) {
-    double dist = sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
-    if (dist < mindist) mindist = dist;
+// tï¿½nh kho?ng cï¿½ch gi?a a vï¿½ b r?i update k?t qu?
+void upd_ans(const point &a, const point &b)
+{
+    double dist = sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+    if (dist < mindist)
+        mindist = dist;
 }
 
-void find(int l, int r) {
-    if (r <= l) return;
-    // do?n [l,r] có 2 ph?n t?
-    if (r == l + 1) {
+void find(int l, int r)
+{
+    if (r <= l)
+        return;
+    // do?n [l,r] cï¿½ 2 ph?n t?
+    if (r == l + 1)
+    {
         upd_ans(a[l], a[r]);
-        // s?p các ph?n t? l?i theo y
-        if (!cmp_y(a[l], a[r])) swap(a[l], a[r]);
+        // s?p cï¿½c ph?n t? l?i theo y
+        if (!cmp_y(a[l], a[r]))
+            swap(a[l], a[r]);
         return;
     }
 
     int m = (l + r) / 2;
     int midx = a[m].x;
     find(l, m);
-    find(m+1, r);
+    find(m + 1, r);
 
     static point t[MAXN];
-    // tr?n a[l,m] và a[m+1,r] l?i, luu vào m?ng t?m t
-    merge(a+l, a+m+1, a+m+1, a+r+1, t, cmp_y);
+    // tr?n a[l,m] vï¿½ a[m+1,r] l?i, luu vï¿½o m?ng t?m t
+    merge(a + l, a + m + 1, a + m + 1, a + r + 1, t, cmp_y);
     // copy t? t v? l?i a
-    copy(t, t+r-l+1, a+l);
+    copy(t, t + r - l + 1, a + l);
 
-    // m?ng t ? dây luu các ph?n t? th?a |x_i - midx| < mindist,
-    // v?i s? lu?ng ph?n t? là tm
-    // do dã sort nên các ph?n t? s? có y tang d?n
+    // m?ng t ? dï¿½y luu cï¿½c ph?n t? th?a |x_i - midx| < mindist,
+    // v?i s? lu?ng ph?n t? lï¿½ tm
+    // do dï¿½ sort nï¿½n cï¿½c ph?n t? s? cï¿½ y tang d?n
     int tm = 0;
-    for (int i=l; i<=r; i++) if (abs(a[i].x-midx) < mindist) {
-        for (int j=tm-1; j>=0 && t[j].y > a[i].y-mindist; j--)
-            upd_ans(a[i], t[j]);
-        t[tm++] = a[i];
-    }
+    for (int i = l; i <= r; i++)
+        if (abs(a[i].x - midx) < mindist)
+        {
+            for (int j = tm - 1; j >= 0 && t[j].y > a[i].y - mindist; j--)
+                upd_ans(a[i], t[j]);
+            t[tm++] = a[i];
+        }
 }
 
-int main() {
-    ios::sync_with_stdio(false); cin.tie(0);
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
-    int n; cin >> n;
-    for (int i=0; i<n; i++) cin >> a[i].x >> a[i].y;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i].x >> a[i].y;
 
     mindist = 1E20;
-    sort(a, a+n, cmp_x);
-    find(0, n-1);
+    sort(a, a + n, cmp_x);
+    find(0, n - 1);
 
     printf("%.3lf", mindist);
     return 0;

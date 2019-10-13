@@ -38,22 +38,27 @@ int main()
     int n;
     scanf("%d\n", &n);
     char s[10000];
-    for (int tCase = 0; tCase < n; tCase++) {
+    for (int tCase = 0; tCase < n; tCase++)
+    {
         //input
         scanf("%[^\n]%*c", s);
         //handle
         top = -1;
         int res = 1;
         int i = 0;
-        while (s[i] != '\0') {
-            if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
+        while (s[i] != '\0')
+        {
+            if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+            {
                 add(s[i]);
             }
-            else if (top == -1) {
+            else if (top == -1)
+            {
                 res = 0;
                 break;
             }
-            else if (s[i] != daoNguoc(pop())) {
+            else if (s[i] != daoNguoc(pop()))
+            {
                 res = 0;
                 break;
             }
