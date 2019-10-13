@@ -34,7 +34,7 @@ void solve(int n, int a, int b)
 }
 
 int main()
-{
+{ 
 	int n, a, b;
 	cin >> n >> a >> b;
 	for (int i = 0; i < n; i++)
