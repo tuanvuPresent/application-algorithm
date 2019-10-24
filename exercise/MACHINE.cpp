@@ -1,5 +1,5 @@
 /*
-An engineer needs to schedule a machine to run on some given periods 1,…,n
+An engineer needs to schedule a machine to run on some given periods 1,ï¿½,n
 to produce a chemical product CC. Each period i is represented by a starting time point si
 and terminating time point titi (si<tisi<ti). 
 Due to a technical constraint, the machine must run on exactly two periods that are not overlap 
@@ -37,8 +37,8 @@ int f[1000001];
 
 void solve(int n)
 {
-	//g1 [i] = max ( g1[i-1] ,... ) :cong viec thoi gian max ket thuc tai thoi diem i
- }
+    //g1 [i] = max ( g1[i-1] ,... ) :cong viec thoi gian max ket thuc tai thoi diem i
+}
 
 int main()
 {
@@ -54,4 +54,3 @@ int main()
 
     return 0;
 }
-

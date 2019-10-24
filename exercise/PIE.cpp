@@ -14,7 +14,7 @@ All the pies are cylindrical in shape and they all have the same height 1, but t
 Input
 One line with a positive integer: the number of test cases. Then for each test case:
 
-One line with two integers N and F with 1=N,F=10000: the number of pies and the number of friends.
+One line with two integers N and F with 1F=N,F=10000: the number of pies and the number of friends.
 One line with NN integers riri with 1 <= ri <= 10000: the radii of the pies.
 Output
 For each test case, output one line with the largest possible volume 
