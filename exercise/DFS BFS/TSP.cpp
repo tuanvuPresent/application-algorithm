@@ -1,6 +1,6 @@
 /*
 A person departs from point 0. He want to visit points 1,2,…,n,
-once and come back to 0. Given c(i,j)which is the traveling distance 
+once and come back to 0. Given c(i,j)which is the traveling distance
 from point i to point j(i,j=0,1,…,n), help that person to compute the shortest route.
 
 Input
@@ -33,74 +33,69 @@ int visit[15] = { 0 };
 long long result = 999999999999999999;
 long long smin = 999999999999999999;
 
-int minFromA(int x, int n)
-{
-    int res = 0;
-    int flag = true;
-    for (int i = 1; i <= n; i++) {
-        if (visit[i] == 0) {
-            if (flag) {
-                res = i;
-                flag = false;
-            }
-            else if (matrix[x][res] > matrix[x][i]) {
-                res = i;
-            }
-        }
-    }
-    return res;
-}
-
-int greedy(int init, int n)
-{
-    int start = init;		//start = 0
-    int res = 0;
-    for (int i = 1; i <= n; i++) {
-        int next = minFromA(start, n);
-        visit[next] = 1;
-
-        res += matrix[start][next];
-        start = next;
-    }
-	memset(visit, 0, sizeof(visit));
-    return res + matrix[start][0];
-}
-
-void DFS(int x, int n, long long sum, int count)
-{
-    if (count == n) {
-        result = min(result, sum + matrix[x][0]);
-        return;
-    }
-    for (int i = 1; i <= n; i++) {
-        if (visit[i] == 0 && (sum + matrix[x][i] + (n - count)*smin < result)) {
-            visit[i] = 1;
-            DFS(i, n, sum + matrix[x][i], count + 1);
-            visit[i] = 0;
-        }
-    }
-}
-
-
-int main()
-{
-	freopen("input.txt","r",stdin);
-    //input
-    int n;
-    cin >> n;
-    for (int i = 0; i <= n; i++) {
-        for (int j = 0; j <= n; j++) {
-            cin >> matrix[i][j];
-            if(i != 0 && i != j){
-            	smin = min(smin, matrix[i][j]);
+int minFromA(int x, int n) {
+	int res = 0;
+	int flag = true;
+	for (int i = 1; i <= n; i++) {
+		if (visit[i] == 0) {
+			if (flag) {
+				res = i;
+				flag = false;
+			} else if (matrix[x][res] > matrix[x][i]) {
+				res = i;
 			}
-        }
-    }
-    //handle
-    result = greedy(0, n);
-	DFS(0, n, 0, 0);
-    //show output
-    cout << result;
+		}
+	}
+	return res;
+}
 
-    return 0;
+int greedy(int init, int n) {
+	int start = init;		//start = 0
+	int res = 0;
+	for (int i = 1; i <= n; i++) {
+		int next = minFromA(start, n);
+		visit[next] = 1;
+
+		res += matrix[start][next];
+		start = next;
+	}
+	memset(visit, 0, sizeof(visit));
+	return res + matrix[start][0];
+}
+
+void DFS(int x, int n, long long sum, int count) {
+	if (count == n) {
+		result = min(result, sum + matrix[x][0]);
+		return;
+	}
+	for (int i = 1; i <= n; i++) {
+		if (visit[i] == 0 && (sum + matrix[x][i] + (n - count)*smin < result)) {
+			visit[i] = 1;
+			DFS(i, n, sum + matrix[x][i], count + 1);
+			visit[i] = 0;
+		}
+	}
+}
+
+
+int main() {
+	freopen("input.txt","r",stdin);
+	//input
+	int n;
+	cin >> n;
+	for (int i = 0; i <= n; i++) {
+		for (int j = 0; j <= n; j++) {
+			cin >> matrix[i][j];
+			if(i != 0 && i != j) {
+				smin = min(smin, matrix[i][j]);
+			}
+		}
+	}
+	//handle
+	result = greedy(0, n);
+	DFS(0, n, 0, 0);
+	//show output
+	cout << result;
+
+	return 0;
 }

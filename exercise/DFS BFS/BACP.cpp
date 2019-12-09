@@ -1,13 +1,13 @@
 /*
-BACP là thi?t k? m?t chuong trình h?c cân b?ng b?ng cách gán th?i gian cho các khóa h?c 
-theo cách mà kh?i lu?ng h?c t?p c?a t?ng th?i k? du?c cân b?ng. 
-Có các khóa h?c 1,2, LO, N ph?i du?c ch? d?nh cho M giai do?n 1,2, t?m, M. 
-M?i khóa h?c tôi có tín d?ng và có m?t s? khóa h?c là di?u ki?n tiên quy?t. 
-T?i tr?ng c?a m?t kho?ng th?i gian du?c xác d?nh là t?ng s? tín ch? 
-c?a các khóa h?c du?c gán cho giai do?n dó. 
-Thông tin tiên quy?t du?c th? hi?n b?ng ma tr?n AN × N 
-trong dó Ai, j = 1 ch? ra r?ng các khóa h?c ii ph?i du?c gán cho m?t kho?ng th?i gian 
-tru?c kho?ng th?i gian mà khóa h?c jj du?c ch? d?nh. 
+BACP là thi?t k? m?t chuong trình h?c cân b?ng b?ng cách gán th?i gian cho các khóa h?c
+theo cách mà kh?i lu?ng h?c t?p c?a t?ng th?i k? du?c cân b?ng.
+Có các khóa h?c 1,2, LO, N ph?i du?c ch? d?nh cho M giai do?n 1,2, t?m, M.
+M?i khóa h?c tôi có tín d?ng và có m?t s? khóa h?c là di?u ki?n tiên quy?t.
+T?i tr?ng c?a m?t kho?ng th?i gian du?c xác d?nh là t?ng s? tín ch?
+c?a các khóa h?c du?c gán cho giai do?n dó.
+Thông tin tiên quy?t du?c th? hi?n b?ng ma tr?n AN × N
+trong dó Ai, j = 1 ch? ra r?ng các khóa h?c ii ph?i du?c gán cho m?t kho?ng th?i gian
+tru?c kho?ng th?i gian mà khóa h?c jj du?c ch? d?nh.
 Tính toán bài t?p sao cho t?i t?i da cho t?t c? các giai do?n là t?i thi?u.
 
 Ð?u vào
@@ -42,73 +42,66 @@ int res = 1000000000;
 int load[6] = { 0 };
 int X[17] = { 0 };
 
-int maxLoad()
-{
-    int max = load[1];
-    for (int i = 2; i <= soKy; i++) {
-        if (max < load[i]) {
-            max = load[i];
-        }
-    }
-    return max;
+int maxLoad() {
+	int max = load[1];
+	for (int i = 2; i <= soKy; i++) {
+		if (max < load[i]) {
+			max = load[i];
+		}
+	}
+	return max;
 }
 
-int check(int n, int v)
-{
-    for (int i = 1; i <= n - 1; i++) {
-        if (matrix[i][n]) {
-            if (X[i] >= v)
-                return 0;
-        }
-        else if (matrix[n][i]) {
-            if (X[i] <= v)
-                return 0;
-        }
-    }
+int check(int n, int v) {
+	for (int i = 1; i <= n - 1; i++) {
+		if (matrix[i][n]) {
+			if (X[i] >= v)
+				return 0;
+		} else if (matrix[n][i]) {
+			if (X[i] <= v)
+				return 0;
+		}
+	}
 
-    return 1;
+	return 1;
 }
 
-void backtrack(int n)
-{
-    if (n == soMon + 1) {
-        int temp = maxLoad();
-        res = min(res, temp);
-    }
-    else {
-        for (int v = 1; v <= soKy; v++) {
-            if (check(n, v)) {
-                X[n] = v;
-                load[v] += tinChi[n];
-                backtrack(n + 1);
-                load[v] -= tinChi[n];
-            }
-        }
-    }
+void backtrack(int n) {
+	if (n == soMon + 1) {
+		int temp = maxLoad();
+		res = min(res, temp);
+	} else {
+		for (int v = 1; v <= soKy; v++) {
+			if (check(n, v)) {
+				X[n] = v;
+				load[v] += tinChi[n];
+				backtrack(n + 1);
+				load[v] -= tinChi[n];
+			}
+		}
+	}
 }
 
-int main()
-{
-    //input
-    cin >> soMon >> soKy;
-    for (int i = 1; i <= soMon; i++)
-        cin >> tinChi[i];
+int main() {
+	//input
+	cin >> soMon >> soKy;
+	for (int i = 1; i <= soMon; i++)
+		cin >> tinChi[i];
 
-    for (int i = 1; i <= soMon; i++) {
-        for (int j = 1; j <= soMon; j++) {
-            cin >> matrix[i][j];
-        }
-    }
-    //handle
-    backtrack(1);
-    //show output
-    if (res == 1000000000) {
-        cout << "-1";
-    }
-    else {
-        cout << res;
-    }
+	for (int i = 1; i <= soMon; i++) {
+		for (int j = 1; j <= soMon; j++) {
+			cin >> matrix[i][j];
+		}
+	}
+	//handle
+	backtrack(1);
+	//show output
+	if (res == 1000000000) {
+		cout << "-1";
+	} else {
+		cout << res;
+	}
 
-    return 0;
+	return 0;
 }
 

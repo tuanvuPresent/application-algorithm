@@ -1,19 +1,15 @@
 /*
 inputCopy
-5 8
-1 2 1
-1 3 4
-1 5 1
-2 4 2
-2 5 1
-3 4 3
-3 5 3
-4 5 2
+5 6
+1 4 6
+2 5 5
+3 4 2
+2 1 2
+2 3 3
+4 5 4
 outputCopy
-7
-
+4
 */
-
 #include<iostream>
 #include <algorithm>
 #include <vector>
@@ -49,11 +45,14 @@ bool join(int u, int v) {
 	return true;
 }
 
-void kruskal() {
-	long long res = 0;
+void solve(int n) {
+	int res = 0;
 	for(int i=0; i<g.size(); i++) {
 		if(join(g[i].x,g[i].y)) {
-			res += g[i].v;
+			res = g[i].v;
+		}
+		if(find(n) == 1) {
+			break;
 		}
 	}
 	//show output
@@ -76,7 +75,7 @@ int main() {
 		cnt[i] = 0;
 	}
 	//solve
-	kruskal();
+	solve(n);
 
 	return 0;
 }

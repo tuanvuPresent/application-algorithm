@@ -26,26 +26,26 @@ set <int> A[MAX];
 stack <int> st,CE;
 int N, M;
 
-void solve(){
+void solve() {
 	st.push(1);
-	while(!st.empty()){
+	while(!st.empty()) {
 		int x = st.top();
-		if(!A[x].empty()){
+		if(!A[x].empty()) {
 			int y = *(A[x].begin());
 			st.push(y);
 			A[x].erase(y);
 			A[y].erase(x);
-		}else{
+		} else {
 			st.pop();
 			CE.push(x);
 		}
 	}
 }
 
-int main(){
+int main() {
 	//input
 	cin>>N>>M;
-	for(int i=0;i<M;i++){
+	for(int i=0; i<M; i++) {
 		int a,b;
 		cin>>a>>b;
 		A[a].insert(b);
@@ -54,12 +54,12 @@ int main(){
 	//solve
 	solve();
 	//show output
-	while(!CE.empty()){
+	while(!CE.empty()) {
 		int x = CE.top();
 		CE.pop();
 		cout<<x<<" ";
 	}
-	
+
 	return 0;
 }
 

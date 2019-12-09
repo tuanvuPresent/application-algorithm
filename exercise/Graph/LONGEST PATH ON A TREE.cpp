@@ -26,16 +26,16 @@ int res = 0;
 int u = 1;
 
 
-int check(int x){
-	for(int i=0;i<A[x].size();i++){
+int check(int x) {
+	for(int i=0; i<A[x].size(); i++) {
 		if(!visited[A[x][i]]) return 0;
 	}
 	return 1;
 }
 
-void DFS(int x, int k, int n,int sum){
-	if(check(x)){
-		if(res < sum){
+void DFS(int x, int k, int n,int sum) {
+	if(check(x)) {
+		if(res < sum) {
 			res = sum;
 			u = x;
 		}
@@ -43,9 +43,9 @@ void DFS(int x, int k, int n,int sum){
 //		cout<<"\n";
 		return;
 	}
-	
-	for(int i=0;i<A[x].size();i++){
-		if(!visited[A[x][i]]){
+
+	for(int i=0; i<A[x].size(); i++) {
+		if(!visited[A[x][i]]) {
 			visited[A[x][i]] = 1;
 //			X[k] = A[x][i];
 			DFS(A[x][i],k+1,n,sum + d[x][i]);
@@ -54,11 +54,13 @@ void DFS(int x, int k, int n,int sum){
 	}
 }
 
-int main(){
+int main() {
 	//input
-	int n; cin>>n;
-	for(int i=1;i<n;i++){
-		int a,b,v;cin>>a>>b>>v;
+	int n;
+	cin>>n;
+	for(int i=1; i<n; i++) {
+		int a,b,v;
+		cin>>a>>b>>v;
 		A[a].push_back(b);
 		A[b].push_back(a);
 		d[a].push_back(v);
@@ -72,7 +74,7 @@ int main(){
 	DFS(u,1,n,0);
 	//show output
 	cout<<res;
-	
+
 	return 0;
 }
 

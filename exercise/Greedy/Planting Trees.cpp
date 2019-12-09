@@ -5,8 +5,7 @@ using namespace std;
 
 int arr[100001];
 
-int main()
-{
+int main() {
 	int n;
 	cin >> n;
 	for (int i = 0; i < n; i++)
@@ -16,12 +15,10 @@ int main()
 	//handle
 	int res = 1;
 	int j = 1;
-	for (int i = n - 1; i >= 0; i--)
-	{
+	for (int i = n - 1; i >= 0; i--) {
 		int temp = arr[i] + j;
 		j++;
-		if (res < temp)
-		{
+		if (res < temp) {
 			res = temp;
 		}
 	}

@@ -13,8 +13,7 @@ using namespace std;
 const int mod = 1000000007;
 int res = 0;
 
-void solve(int n, int k1, int k2)
-{
+void solve(int n, int k1, int k2) {
 	/*
 	 	12 45 78
 	 	123 56
@@ -28,17 +27,12 @@ void solve(int n, int k1, int k2)
 	 	345 78
 	 	45 78
 	*/
-	for (int k = 0; k <= n - k1 - k1 - 1; k++)
-	{
-		for (int i = k1; i <= k2; i++)
-		{
+	for (int k = 0; k <= n - k1 - k1 - 1; k++) {
+		for (int i = k1; i <= k2; i++) {
 			int x = n - i - 1 - k;
-			if (x >= k2)
-			{
+			if (x >= k2) {
 				res += k2 - k1 + 1;
-			}
-			else if (x >= k1)
-			{
+			} else if (x >= k1) {
 				res += x - k1 + 1;
 			}
 			int mul = (n / (k + i + 1 + k2));
@@ -50,8 +44,7 @@ void solve(int n, int k1, int k2)
 	}
 }
 
-int main()
-{
+int main() {
 	//input
 	int n, k1, k2;
 	cin >> n >> k1 >> k2;

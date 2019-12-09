@@ -16,7 +16,7 @@ input:
 */
 #include<iostream>
 #include <algorithm>
-#include <stack> 
+#include <stack>
 #include <vector>
 #define MAX 100001
 using namespace std;
@@ -26,26 +26,26 @@ int N, M;
 int visited[100001];
 int res[100001];
 
-int check(int x){
-	for(int i=0;i<A[x].size();i++){
+int check(int x) {
+	for(int i=0; i<A[x].size(); i++) {
 		if(A[x][i] == 1) return 1;
 	}
 	return 0;
 }
 
-void backtrack(int x, int k, int n){
-	if(k == n){
-		if(check(x)){
-			for(int i=0;i<n;i++){
+void backtrack(int x, int k, int n) {
+	if(k == n) {
+		if(check(x)) {
+			for(int i=0; i<n; i++) {
 				cout<<res[i]<<" ";
 			}
 			cout<<"\n";
 		}
 		return;
 	}
-	for(int i=0;i<A[x].size(); i++){
+	for(int i=0; i<A[x].size(); i++) {
 		int v = A[x][i];
-		if(!visited[v]){
+		if(!visited[v]) {
 			visited[v] = 1;
 			res[k] = v;
 			backtrack(v,k+1,n);
@@ -54,10 +54,10 @@ void backtrack(int x, int k, int n){
 	}
 }
 
-int main(){
+int main() {
 	//input
 	cin>>N>>M;
-	for(int i=0;i<M;i++){
+	for(int i=0; i<M; i++) {
 		int a,b;
 		cin>>a>>b;
 		A[a].push_back(b);
@@ -68,7 +68,7 @@ int main(){
 	res[0] = 1;
 	backtrack(1,1,N);
 	//show output
-	
+
 	return 0;
 }
 

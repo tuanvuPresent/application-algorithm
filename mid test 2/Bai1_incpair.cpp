@@ -11,23 +11,24 @@ output:
 using namespace std;
 int arr[1001];
 
-int main(){
+int main() {
 	//input
-	int n; cin>>n;
-	for(int i=0;i<n;i++)cin>>arr[i];
+	int n;
+	cin>>n;
+	for(int i=0; i<n; i++)cin>>arr[i];
 	//
 	int res = 0;
-	for(int i=0;i<n;i++){
-		for(int j=i+1;j<n;j++){
-			if(arr[i] < arr[j]){
+	for(int i=0; i<n; i++) {
+		for(int j=i+1; j<n; j++) {
+			if(arr[i] < arr[j]) {
 				res++;
 			}
 		}
 	}
-	
+
 	//show output
 	cout<<res;
-		
+
 	return 0;
 }
 

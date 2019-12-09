@@ -13,18 +13,12 @@ int y[1000001];
 int temp[1000001] = {0};
 int f[1000001] = {0};
 
-void dayConChungDaiNhat(int n, int m)
-{
-	for (int i = 1; i <= n; i++)
-	{
-		for (int j = 1; j <= m; j++)
-		{
-			if (x[i] == y[j])
-			{
+void dayConChungDaiNhat(int n, int m) {
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			if (x[i] == y[j]) {
 				f[j] = temp[j - 1] + 1;
-			}
-			else
-			{
+			} else {
 				f[j] = max(temp[j], f[j - 1]);
 			}
 		}
@@ -34,13 +28,11 @@ void dayConChungDaiNhat(int n, int m)
 	}
 }
 
-int getResult(int n, int m)
-{
+int getResult(int n, int m) {
 	return f[m];
 }
 
-int main()
-{
+int main() {
 	//input
 	int n, m;
 	cin >> n >> m;

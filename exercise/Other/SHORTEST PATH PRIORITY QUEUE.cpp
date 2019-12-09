@@ -1,5 +1,5 @@
 /*
-Given a directed graph G=(V,A)G=(V,A) where V={1,�,n}V={1,�,n} is the set of nodes. 
+Given a directed graph G=(V,A)G=(V,A) where V={1,�,n}V={1,�,n} is the set of nodes.
 Each arc (u,v)?A(u,v)?A has weight w(u,v)w(u,v). Given s,t?Vs,t?V, compute the shortest path from ss to tt.
 
 Input
@@ -27,8 +27,7 @@ outputCopy
 #include <algorithm>
 
 using namespace std;
-int main()
-{
+int main() {
 	//input
 
 	//
