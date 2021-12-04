@@ -2,20 +2,17 @@
 
 */
 
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 using namespace std;
-int main(){
-	//input
+int main() {
+  // input
 
-	//handle
+  // handle
 
-	//show output
+  // show output
 
-
-	return 0;
+  return 0;
 }
-
-

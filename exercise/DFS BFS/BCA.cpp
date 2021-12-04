@@ -1,17 +1,18 @@
 /*
 
-Vào dau hoc ky, truong phòng khoa hoc máy tính D phai phân công các khóa hoc cho giáo viên mot cách cân bang.
-Khoa D có m giáo viên T = {1,2, ..., m} và n khóa C = {1,2, ..., n}.
-Moi khóa hoc C có thoi luong hc. Moi giáo viên có mot danh sách uu tiên
-là danh sách các khóa h?c mà anh / cô ay có the day tùy thuoc vào chuyên môn cua mình.
-Chúng tôi biet mot danh sách các cap xung dot hai khóa hoc không the duoc chi danh cho cùng mot giáo viên
-vì các khóa hoc này dã duoc lên lich trong cùng mot thoi gian bieu.
-Thông tin xung dot này duoc bieu thi bang ma tran xung dot A
-trong dó A (i, j) = 1 chi ra rang khóa hoc i và j là xung dot.
-Tai cua giáo viên là tung thoi luong cua các khóa hoc duoc gán cho cô ay / anh ay.
-Làm the nào de gán các khóa hoc nn cho m giáo viên sao cho moi khóa hoc duoc chi danh
-cho mot giáo viên nam trong danh sách uu tiên cua anh ay / cô ay,
-không có hai khóa hoc xung dot nào duoc gán cho cùng mot giáo viên và tai toi da cua giáo viên là toi thieu.
+Vï¿½o dau hoc ky, truong phï¿½ng khoa hoc mï¿½y tï¿½nh D phai phï¿½n cï¿½ng cï¿½c khï¿½a hoc cho
+giï¿½o viï¿½n mot cï¿½ch cï¿½n bang. Khoa D cï¿½ m giï¿½o viï¿½n T = {1,2, ..., m} vï¿½ n khï¿½a C
+= {1,2, ..., n}. Moi khï¿½a hoc C cï¿½ thoi luong hc. Moi giï¿½o viï¿½n cï¿½ mot danh sï¿½ch
+uu tiï¿½n lï¿½ danh sï¿½ch cï¿½c khï¿½a h?c mï¿½ anh / cï¿½ ay cï¿½ the day tï¿½y thuoc vï¿½o chuyï¿½n
+mï¿½n cua mï¿½nh. Chï¿½ng tï¿½i biet mot danh sï¿½ch cï¿½c cap xung dot hai khï¿½a hoc khï¿½ng
+the duoc chi danh cho cï¿½ng mot giï¿½o viï¿½n vï¿½ cï¿½c khï¿½a hoc nï¿½y dï¿½ duoc lï¿½n lich
+trong cï¿½ng mot thoi gian bieu. Thï¿½ng tin xung dot nï¿½y duoc bieu thi bang ma tran
+xung dot A trong dï¿½ A (i, j) = 1 chi ra rang khï¿½a hoc i vï¿½ j lï¿½ xung dot. Tai
+cua giï¿½o viï¿½n lï¿½ tung thoi luong cua cï¿½c khï¿½a hoc duoc gï¿½n cho cï¿½ ay / anh ay.
+Lï¿½m the nï¿½o de gï¿½n cï¿½c khï¿½a hoc nn cho m giï¿½o viï¿½n sao cho moi khï¿½a hoc duoc chi
+danh cho mot giï¿½o viï¿½n nam trong danh sï¿½ch uu tiï¿½n cua anh ay / cï¿½ ay, khï¿½ng cï¿½
+hai khï¿½a hoc xung dot nï¿½o duoc gï¿½n cho cï¿½ng mot giï¿½o viï¿½n vï¿½ tai toi da cua giï¿½o
+viï¿½n lï¿½ toi thieu.
 
 input:
 4 2
@@ -34,77 +35,79 @@ ouput:
 using namespace std;
 int soGiaoVien;
 int soMon;
-int p[21][6]= {0} ; // mon i co nhung giao vien nao day
-int time[21]; // thoi gian cua mon
-int matrix[21][21]; //matrix[i][j] = 1  ,i  j la 2 mon cung thoi gian day
+int p[21][6] = {0}; // mon i co nhung giao vien nao day
+int time[21];       // thoi gian cua mon
+int matrix[21][21]; // matrix[i][j] = 1  ,i  j la 2 mon cung thoi gian day
 
 int res = 1000000000;
-int load[6]= {0};
-int X[21]= {0};
+int load[6] = {0};
+int X[21] = {0};
 
 int maxLoad() {
-	int max = load[1];
-	for (int i = 2; i <= soGiaoVien; i++) {
-		if(max < load[i]) {
-			max = load[i];
-		}
-	}
-	return max;
+  int max = load[1];
+  for (int i = 2; i <= soGiaoVien; i++) {
+    if (max < load[i]) {
+      max = load[i];
+    }
+  }
+  return max;
 }
 
 int check(int n, int v) {
-	if( p[n][v] == 0 ) return 0; 						// mon n giao vien v day
-	for(int i = 1; i <= n - 1; i++) {
-		if(matrix[i][n] && X[i] == v ) return 0;
-	}
-	return 1;
+  if (p[n][v] == 0)
+    return 0; // mon n giao vien v day
+  for (int i = 1; i <= n - 1; i++) {
+    if (matrix[i][n] && X[i] == v)
+      return 0;
+  }
+  return 1;
 }
 
 void backtrack(int n) {
-	if (n == soMon + 1) {
-		int temp = maxLoad();
-		res = min(res, temp);
-	} else {
-		for (int v = 1; v <= soGiaoVien; v++) {
-			if (check(n,v)) {
-				X[n] = v;
-				load[v] += time[n];
-				backtrack(n + 1);
-				load[v] -= time[n];
-			}
-		}
-	}
+  if (n == soMon + 1) {
+    int temp = maxLoad();
+    res = min(res, temp);
+  } else {
+    for (int v = 1; v <= soGiaoVien; v++) {
+      if (check(n, v)) {
+        X[n] = v;
+        load[v] += time[n];
+        backtrack(n + 1);
+        load[v] -= time[n];
+      }
+    }
+  }
 }
 
 int main() {
-	//input
-	cin >> soMon >> soGiaoVien;
-	for (int i = 1; i <= soMon; i++)
-		cin >> time[i];
+  // input
+  cin >> soMon >> soGiaoVien;
+  for (int i = 1; i <= soMon; i++)
+    cin >> time[i];
 
-	for (int i = 1; i <= soMon; i++) {
-		int k;
-		cin >> k;
-		for (int j = 0; j < k; j++) {
-			int x;
-			cin >> x;
-			p[i][x] = 1;
-		}
-	}
+  for (int i = 1; i <= soMon; i++) {
+    int k;
+    cin >> k;
+    for (int j = 0; j < k; j++) {
+      int x;
+      cin >> x;
+      p[i][x] = 1;
+    }
+  }
 
-	for (int i = 1; i <= soMon; i++) {
-		for (int j = 1; j <= soMon; j++) {
-			cin >> matrix[i][j];
-		}
-	}
-	//handle
-	backtrack(1);
-	//show output
-	if(res == 1000000000) {
-		cout<<"-1";
-	} else {
-		cout << res;
-	}
+  for (int i = 1; i <= soMon; i++) {
+    for (int j = 1; j <= soMon; j++) {
+      cin >> matrix[i][j];
+    }
+  }
+  // handle
+  backtrack(1);
+  // show output
+  if (res == 1000000000) {
+    cout << "-1";
+  } else {
+    cout << res;
+  }
 
-	return 0;
+  return 0;
 }

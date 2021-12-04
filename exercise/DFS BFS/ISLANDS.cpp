@@ -1,26 +1,28 @@
-#include<iostream>
-#include<string.h>
+#include <iostream>
+#include <string.h>
 
 /*
-Hình ?nh ch?p t? v? tinh vùng bi?n Atlantic g?m nhi?u hòn d?o du?c chia nh? thành các lu?i ô vuông.
-Máy quang h?c s? ti?n hành quét t?ng lu?i ô vuông, và ti?n hành tô màu d? n?u ô dó có ch?a d?t c?a hòn d?o nào dó,
-và tô màu xanh n?u không có hòn d?o nào n?m trong nó. Hãy:
+Hï¿½nh ?nh ch?p t? v? tinh vï¿½ng bi?n Atlantic g?m nhi?u hï¿½n d?o du?c chia nh?
+thï¿½nh cï¿½c lu?i ï¿½ vuï¿½ng. Mï¿½y quang h?c s? ti?n hï¿½nh quï¿½t t?ng lu?i ï¿½ vuï¿½ng, vï¿½
+ti?n hï¿½nh tï¿½ mï¿½u d? n?u ï¿½ dï¿½ cï¿½ ch?a d?t c?a hï¿½n d?o nï¿½o dï¿½, vï¿½ tï¿½ mï¿½u xanh n?u
+khï¿½ng cï¿½ hï¿½n d?o nï¿½o n?m trong nï¿½. Hï¿½y:
 
-* Ð?m s? hòn d?o có trong ?nh
+* ï¿½?m s? hï¿½n d?o cï¿½ trong ?nh
 
-* Ðua ra di?n tích c?a hòn d?o l?n nh?t (= s? lu?ng lu?i ô vuông ch?a hòn d?o l?n nh?t)
+* ï¿½ua ra di?n tï¿½ch c?a hï¿½n d?o l?n nh?t (= s? lu?ng lu?i ï¿½ vuï¿½ng ch?a hï¿½n d?o
+l?n nh?t)
 
 Input
-Dòng d?u tiên ch?a hai s? nguyên duong n,m<=1000n.
+Dï¿½ng d?u tiï¿½n ch?a hai s? nguyï¿½n duong n,m<=1000n.
 
-Các dòng ti?p theo bi?u di?n lu?i ô vuông nhu ví d?.
+Cï¿½c dï¿½ng ti?p theo bi?u di?n lu?i ï¿½ vuï¿½ng nhu vï¿½ d?.
 
 Output
-G?m hai dòng:
+G?m hai dï¿½ng:
 
-Dòng d?u tiên ch?a s? lu?ng hòn d?o trong ?nh.
+Dï¿½ng d?u tiï¿½n ch?a s? lu?ng hï¿½n d?o trong ?nh.
 
-Dòng th? hai ch?a di?n tích c?a hòn d?o l?n nh?t nhu miêu t?.
+Dï¿½ng th? hai ch?a di?n tï¿½ch c?a hï¿½n d?o l?n nh?t nhu miï¿½u t?.
 
 input:
 7 11
@@ -44,41 +46,41 @@ char matrix[1001][1001];
 int visit[1001][1001] = {0};
 int res, count;
 void DFS(int x, int y) {
-	if(matrix[x][y] == '1' && visit[x][y] == 0) {
-		count++;
-		visit[x][y] = 1;
+  if (matrix[x][y] == '1' && visit[x][y] == 0) {
+    count++;
+    visit[x][y] = 1;
 
-		DFS(x + 1, y);
-		DFS(x - 1, y);
-		DFS(x, y + 1);
-		DFS(x, y - 1);
-	}
+    DFS(x + 1, y);
+    DFS(x - 1, y);
+    DFS(x, y + 1);
+    DFS(x, y - 1);
+  }
 }
 
 int main() {
-	//input
-	memset(matrix, '0', sizeof(matrix));
-	int row, col;
-	cin>>row>>col;
-	for(int i=0; i< row; i++) {
-		cin>>matrix[i];
-	}
+  // input
+  memset(matrix, '0', sizeof(matrix));
+  int row, col;
+  cin >> row >> col;
+  for (int i = 0; i < row; i++) {
+    cin >> matrix[i];
+  }
 
-	//handle
-	int soDao = 0;
-	for(int i=0; i< row; i++) {
-		for(int j=0; j< col; j++) {
-			if(matrix[i][j] == '1' && visit[i][j] == 0) {
-				soDao++;
+  // handle
+  int soDao = 0;
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      if (matrix[i][j] == '1' && visit[i][j] == 0) {
+        soDao++;
 
-				count = 0;
-				DFS(i, j);
-				res = max(res, count);
-			}
-		}
-	}
-	//show output
-	cout<<soDao<<"\n"<<res;
+        count = 0;
+        DFS(i, j);
+        res = max(res, count);
+      }
+    }
+  }
+  // show output
+  cout << soDao << "\n" << res;
 
-	return 0;
+  return 0;
 }

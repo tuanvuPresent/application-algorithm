@@ -12,70 +12,69 @@ inputCopy
 outputCopy
 4
 */
-#include<iostream>
 #include <algorithm>
+#include <iostream>
 int graph[16][16];
 int res = 0;
 
 using namespace std;
 
-int check(int k,int start) {
-	for(int i=start; i<=k+start-1; i++) {
-		for(int j=i+1; j<=k+start-1; j++) {
-			if(!graph[i][j]) {
-				return 0;
-			}
-		}
-	}
-	return 1;
+int check(int k, int start) {
+  for (int i = start; i <= k + start - 1; i++) {
+    for (int j = i + 1; j <= k + start - 1; j++) {
+      if (!graph[i][j]) {
+        return 0;
+      }
+    }
+  }
+  return 1;
 }
 
 int counting(int n) {
-	for(int k=n; k>=1; k--) {
-		for(int start=1; start<=n-k+1; start++) {
-			if(check(k,start)) {
-				return k;
-			}
-		}
-	}
+  for (int k = n; k >= 1; k--) {
+    for (int start = 1; start <= n - k + 1; start++) {
+      if (check(k, start)) {
+        return k;
+      }
+    }
+  }
 }
 int visit[16];
 int x[16];
-int checkAdd(int v,int n) {
-	for(int i=0; i<n; i++) {
-		if(!graph[v][x[i]]) {
-			return 0;
-		}
-	}
-	return 1;
+int checkAdd(int v, int n) {
+  for (int i = 0; i < n; i++) {
+    if (!graph[v][x[i]]) {
+      return 0;
+    }
+  }
+  return 1;
 }
 
-void DFS(int n,int k,int v) {
-	res = max(res, k);
-	for(int i=1; i<=n; i++) {
-		if(!visit[i] && checkAdd(i,k)) {
-			x[k] = i;
-			visit[i] = 1;
-			DFS(n,k+1,i);
-			visit[i] = 0;
-		}
-	}
+void DFS(int n, int k, int v) {
+  res = max(res, k);
+  for (int i = 1; i <= n; i++) {
+    if (!visit[i] && checkAdd(i, k)) {
+      x[k] = i;
+      visit[i] = 1;
+      DFS(n, k + 1, i);
+      visit[i] = 0;
+    }
+  }
 }
 
 int main() {
-	int n,m;
-	cin>>n>>m;
-	for(int i=0; i<m; i++) {
-		int x,y;
-		cin>>x>>y;
-		graph[x][y] = 1;
-		graph[y][x] = 1;
-	}
-	//handle
-	DFS(n,0,0);
-	//show output
-	cout<<res;
+  int n, m;
+  cin >> n >> m;
+  for (int i = 0; i < m; i++) {
+    int x, y;
+    cin >> x >> y;
+    graph[x][y] = 1;
+    graph[y][x] = 1;
+  }
+  // handle
+  DFS(n, 0, 0);
+  // show output
+  cout << res;
 
-	return 0;
+  return 0;
 }
-
