@@ -3,12 +3,10 @@
 using namespace std;
 
 const int N = 1 << 20;
-
 int s[N], t[N], ls[N], lt[N];
 
 int main() {
   ios::sync_with_stdio(false);
-
   int n;
   cin >> n;
 
@@ -27,7 +25,6 @@ int main() {
   }
 
   int res = 0;
-
   for (int i = 1; i <= (int)1e6; i++) {
     res = max(res, lt[i - 1] + ls[i]);
   }

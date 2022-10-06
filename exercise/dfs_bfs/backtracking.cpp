@@ -1,7 +1,3 @@
-/*
-
-*/
-
 #include <iostream>
 
 using namespace std;
@@ -17,6 +13,7 @@ void show() {
   }
   cout << "\n";
 }
+
 int check(int i, int k) {
   if (k < n)
     return sum + i < M;

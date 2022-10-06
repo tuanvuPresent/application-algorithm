@@ -16,7 +16,6 @@ string sum(char a[], char b[]) {
 
   int carry = 0;
   while (lenA > 0 && lenB > 0) {
-
     int sum = (a[lenA - 1] - '0') + (b[lenB - 1] - '0') + carry;
     if (sum > 9) {
       carry = 1;
@@ -30,26 +29,26 @@ string sum(char a[], char b[]) {
     lenB--;
   }
   while (lenA > 0) {
-    int sum = (a[lenA] - '0') + carry;
+    int sum = (a[lenA- 1] - '0') + carry;
     if (sum > 9) {
       carry = 1;
       sum -= 10;
     } else {
       carry = 0;
     }
-    temp += a[lenA - 1];
+    temp += (sum + '0');
 
     lenA--;
   }
   while (lenB > 0) {
-    int sum = (b[lenB] - '0') + carry;
+    int sum = (b[lenB- 1] - '0') + carry;
     if (sum > 9) {
       carry = 1;
       sum -= 10;
     } else {
       carry = 0;
     }
-    temp += a[lenB - 1];
+    temp += (sum + '0');
 
     lenB--;
   }
